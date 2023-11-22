@@ -8,6 +8,7 @@ substitutions:
   devicename: "airgradient-pro"
   upper_devicename: "AG Pro"
   ag_esphome_config_version: 0.9.9
+  CO2_ABC_OFFSET: '0'
 
 esphome:
   name: "${devicename}"
