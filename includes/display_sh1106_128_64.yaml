@@ -52,6 +52,16 @@
           it.printf(128, 6, id(ubuntu), TextAlign::TOP_RIGHT, "%.0f", id(voc).state);
           it.printf(0, 34, id(ubuntu), "NOx:");
           it.printf(128, 34, id(ubuntu), TextAlign::TOP_RIGHT, "%.0f", id(nox).state);
+      - id: wireless
+        lambda: |-
+          it.printf(0,   0,  id(poppins_light), "SSID:");
+          it.printf(128, 0,  id(poppins_light), TextAlign::TOP_RIGHT, "%s", WiFi.SSID().c_str());
+          it.printf(0,   16, id(poppins_light), "Signal:");
+          it.printf(128, 16, id(poppins_light), TextAlign::TOP_RIGHT, "%.0f db", id(wifi_dbm).state);
+          it.printf(0,   32, id(poppins_light), "IP:");
+          it.printf(128, 32, id(poppins_light), TextAlign::TOP_RIGHT, "%s", WiFi.localIP().toString().c_str());
+          //it.printf(0,   48, id(poppins_light), "MAC:");
+          it.printf(128, 48, id(poppins_light), TextAlign::TOP_RIGHT, "%s", WiFi.macAddress().c_str());
       # - id: combo
       #   lambda: |-
       #     if (id(display_in_f).state) {
