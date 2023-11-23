@@ -52,16 +52,56 @@
           it.printf(128, 6, id(ubuntu), TextAlign::TOP_RIGHT, "%.0f", id(voc).state);
           it.printf(0, 34, id(ubuntu), "NOx:");
           it.printf(128, 34, id(ubuntu), TextAlign::TOP_RIGHT, "%.0f", id(nox).state);
+      - id: pm_page
+        lambda: |-
+          it.printf(0,    0, id(poppins_light), "PM  0.3:");
+          it.printf(128,  0, id(poppins_light), TextAlign::TOP_RIGHT, "%.0f µg/m³", id(pm_0_3um).state);
+          it.printf(0,   16, id(poppins_light), "PM 1.0:");
+          it.printf(128, 16, id(poppins_light), TextAlign::TOP_RIGHT, "%.0f µg/m³", id(pm_1_0).state);
+          it.printf(0,   32, id(poppins_light), "PM 2.5:");
+          it.printf(128, 32, id(poppins_light), TextAlign::TOP_RIGHT, "%.0f µg/m³", id(pm_2_5).state);
+          it.printf(0,   48, id(poppins_light), "PM 10:");
+          it.printf(128, 48, id(poppins_light), TextAlign::TOP_RIGHT, "%.0f µg/m³", id(pm_10_0).state);
       - id: wireless
         lambda: |-
-          it.printf(0,   0,  id(poppins_light), "SSID:");
-          it.printf(128, 0,  id(poppins_light), TextAlign::TOP_RIGHT, "%s", WiFi.SSID().c_str());
+          it.printf(0,    0, id(poppins_light), "SSID:");
+          it.printf(128,  0, id(poppins_light), TextAlign::TOP_RIGHT, "%s", WiFi.SSID().c_str());
           it.printf(0,   16, id(poppins_light), "Signal:");
           it.printf(128, 16, id(poppins_light), TextAlign::TOP_RIGHT, "%.0f db", id(wifi_dbm).state);
           it.printf(0,   32, id(poppins_light), "IP:");
           it.printf(128, 32, id(poppins_light), TextAlign::TOP_RIGHT, "%s", WiFi.localIP().toString().c_str());
           //it.printf(0,   48, id(poppins_light), "MAC:");
           it.printf(128, 48, id(poppins_light), TextAlign::TOP_RIGHT, "%s", WiFi.macAddress().c_str());
+      - id: time_page
+        lambda: |-
+          char time[25];
+          char date[25];
+          {
+            time_t currTime = id(sntp_time).now().timestamp;
+            strftime(time, sizeof(time), "%a %I:%M %p", localtime(&currTime));
+            strftime(date, sizeof(date), "%Y-%m-%d", localtime(&currTime));
+          }
+          it.printf(128,  6, id(ubuntu), TextAlign::TOP_RIGHT, "%s", time);
+          it.printf(0,   34, id(ubuntu), date);
+      - id: sytem_info
+        lambda: |-
+          //it.printf(0,   0,   id(poppins_light), "Device:");
+          it.printf(128, 0,   id(poppins_light), TextAlign::TOP_RIGHT, "%s", "${devicename}");
+          it.printf(128, 16,  id(poppins_light), TextAlign::TOP_RIGHT, "%s", "${upper_devicename}");
+          it.printf(0,   32,  id(poppins_light), "Version:");
+          it.printf(128, 32,  id(poppins_light), TextAlign::TOP_RIGHT, "%s", "${ag_esphome_config_version}");
+          const unsigned int days = (int) floor(id(device_uptime).state / (24.0 * 60 * 60) );
+          char time[25];
+          {
+            time_t epoch = static_cast<time_t>(id(device_uptime).state);
+            if (days >= 1000) {
+              strftime(time, sizeof(time), "%H:%M", gmtime(&epoch));
+            } else {
+              strftime(time, sizeof(time), "%H:%M:%S", gmtime(&epoch));
+            }
+          }
+          it.printf(0,   48,  id(poppins_light), "Up:");
+          it.printf(128, 48,  id(poppins_light), TextAlign::TOP_RIGHT, "%ud %s", days, time);
       # - id: combo
       #   lambda: |-
       #     if (id(display_in_f).state) {
@@ -77,10 +117,11 @@
       #     it.printf(0, 48, id(poppins_light_12), "AQI: %.0f", id(pm_2_5_aqi).state);
       - id: boot
         lambda: |-
-          it.printf(0, 0, id(poppins_light), "ID:");
-          it.printf(128, 0, id(poppins_light), TextAlign::TOP_RIGHT, "%s", get_mac_address().c_str());
-          it.printf(0, 21, id(poppins_light), "Config Ver: $ag_esphome_config_version");
-          it.printf(0, 42, id(poppins_light), "$upper_devicename");
+          it.printf(0,    0, id(poppins_light), "ID:");
+          it.printf(128,  0, id(poppins_light), TextAlign::TOP_RIGHT, "%s", get_mac_address().c_str());
+          it.printf(0,   16, id(poppins_light), "Config Ver:");
+          it.printf(128, 16, id(poppins_light), TextAlign::TOP_RIGHT, "%s", "$ag_esphome_config_version");
+          it.printf(128, 32, id(poppins_light), TextAlign::TOP_RIGHT, "%s", "$upper_devicename");
 
     on_page_change:
       to: boot
