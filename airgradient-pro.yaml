@@ -7,6 +7,10 @@
 substitutions:
   <<: !include includes/substitutions.yaml
 
+time:
+  - platform: sntp
+    id: sntp_time
+
 esphome:
   name: "${devicename}"
   friendly_name: "${upper_devicename}"
