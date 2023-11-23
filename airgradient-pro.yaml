@@ -11,6 +11,10 @@ substitutions:
   DEFAULT_DISPLAY_TEMP: RESTORE_DEFAULT_ON
   CO2_ABC_OFFSET: '0'
 
+time:
+  - platform: sntp
+    id: sntp_time
+
 esphome:
   name: "${devicename}"
   friendly_name: "${upper_devicename}"
