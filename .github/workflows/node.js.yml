@@ -3,6 +3,12 @@
 
 name: Node.js CI
 
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 on:
   push:
     branches: [ "main" ]
@@ -20,6 +26,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+
+#    - name: Setup GitHub settings
+#      run:  |
+#        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+#        git config --local user.name "github-actions[bot]"
+#        git rm -rf --ignore-unmatch nextjs-blog/dist/
+
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
@@ -35,11 +49,35 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: dist-without-markdown
+        retention-days: 5
         path: |
+          **/out
+          !**/out/**/*.md
           !**/node_modules
-          **/dist
-          !**/dist/**/*.md
-          !**/node_modules
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        retention-days: 5
+        path: ./nextjs-blog/out
+
+
+#    - name: Update changes in GitHub repository
+#      run:  |
+#        git add -f -A nextjs-blog/dist/
+#        git commit -m '[automated commit] add configs generated using jsonnet & GitHub workflow'
+#        git push
+#
+#
+#    - name: Push changes
+#      uses: ad-m/github-push-action@master
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
+#        branch: ${{ github.ref }}
+
+#    - name: Deploy to GitHub Pages
+#      id: deployment
+#      uses: actions/deploy-pages@v2
 
 
     - name: Cache
@@ -72,4 +110,26 @@ jobs:
 
         # Check if a cache entry exists for the given input(s) (key, restore-keys) without downloading the cache
         lookup-only: # optional, default is false
+
+
+  # Deployment job
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+      - name: echo URL 
+        id: deploymentURL
+        run: echo "new_page_url=${{ steps.deployment.outputs.page_url }}" >> $GITHUB_OUTPUT
 
