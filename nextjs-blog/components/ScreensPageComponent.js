@@ -1,64 +1,62 @@
+// components/ScreensPageComponent.js
 import React, { useState } from 'react';
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Table, Form } from 'react-bootstrap';
+import ScreenData from '../src/ScreenData';
+import * as MainObjectType from '../src/MainObjectType';
 
-const ScreensPageComponent = () => {
-  const [dataRow, setDataRow] = useState({
-    checkbox1: false,
-    checkbox2: false,
-    id: '',
-    text: '',
-  });
+const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
+  const [dataRows, setDataRows] = useState(initialData);
 
-  const handleCheckboxChange = (checkboxName) => {
-    setDataRow((prevDataRow) => ({
-      ...prevDataRow,
-      [checkboxName]: !prevDataRow[checkboxName],
-    }));
-  };
-
-  const handleInputChange = (fieldName, value) => {
-    setDataRow((prevDataRow) => ({
-      ...prevDataRow,
-      [fieldName]: value,
-    }));
+  const handleCheckboxChange = (index, checkboxName) => {
+      if (dataRows == null) 
+	return;
+      let newData = Object.assign({}, dataRows); 
+      newData[index] = { ...newData[index], [checkboxName]: !newData[index][checkboxName] };
+      console.log (newData, index, checkboxName);
+      onDataUpdate(newData); // Call the callback to update the parent component
   };
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <Form.Control
-            type="text"
-            placeholder="ID"
-            value={dataRow.id}
-            onChange={(e) => handleInputChange('id', e.target.value)}
-          />
-        </Col>
-        <Col>
-          <Form.Check
-            label="Checkbox 1"
-            checked={dataRow.checkbox1}
-            onChange={() => handleCheckboxChange('checkbox1')}
-          />
-        </Col>
-        <Col>
-          <Form.Check
-            label="Checkbox 2"
-            checked={dataRow.checkbox2}
-            onChange={() => handleCheckboxChange('checkbox2')}
-          />
-        </Col>
-        <Col>
-          <Form.Control
-            type="text"
-            placeholder="Text"
-            value={dataRow.text}
-            onChange={(e) => handleInputChange('text', e.target.value)}
-          />
-        </Col>
-      </Row>
-    </Container>
+    <Table striped bordered hover>
+      <thead> 
+        <tr>
+          <th>ID</th>
+          <th>Show</th>
+          <th>Favorite</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        { dataRows != null && dataRows.map((dataRow, index) => (
+          <tr key={index}>
+            <td>
+              <label
+                type="text"
+              >{dataRow.id}</label>
+            </td>
+            <td>
+              <Form.Check
+                checked={dataRow.show}
+                onChange={() => handleCheckboxChange(index, 'show')}
+              />
+            </td>
+            <td>
+              <Form.Check
+                checked={dataRow.favorite}
+                onChange={() => handleCheckboxChange(index, 'favorite')}
+              />
+            </td>
+            <td>
+              <label
+                type="text"
+              ><pre>{MainObjectType.formatYamlData(dataRow.object)}</pre></label>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
   );
 };
 
 export default ScreensPageComponent;
+
