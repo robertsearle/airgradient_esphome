@@ -5,7 +5,8 @@ const nextConfig = {
   reactStrictMode: true,
 
  // Add basePath
-  basePath: '/airgradient_esphome', 
+  basePath:
+process.env.NODE_ENV === "production" ? "/airgradient_esphome" : undefined,
 
   // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`
   // trailingSlash: true,
