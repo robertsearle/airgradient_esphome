@@ -61,4 +61,4 @@ const ScreensPageComponent = () => {
   );
 };
 
-export default ScreensPage;
+export default ScreensPageComponent;

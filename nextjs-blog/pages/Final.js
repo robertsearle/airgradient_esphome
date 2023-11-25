@@ -6,7 +6,7 @@ const Final = () => (
     <h2>Final Page</h2>
     <p>Congratulations! You've completed the wizard.</p>
     <Link href="/ScreensPage">
-      <a>Start Over</a>
+      Start Over
     </Link>
   </div>
 );
