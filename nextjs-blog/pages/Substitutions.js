@@ -7,10 +7,10 @@ const Substitutions = () => (
     <h2>Substitutions Page</h2>
     <SubstitutionsComponent />
     <Link href="/Final">
-      <a>Next</a>
+      Next
     </Link>
     <Link href="/ScreensPage">
-      <a>Previous</a>
+      Previous
     </Link>
   </div>
 );

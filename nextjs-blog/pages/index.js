@@ -5,7 +5,7 @@ const IndexPage = () => (
   <div>
     <h1>Wizard</h1>
     <Link href="/ScreensPage">
-      <a>Start Wizard</a>
+      Start Wizard
     </Link>
   </div>
 );

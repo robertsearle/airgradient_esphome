@@ -7,7 +7,7 @@ const ScreensPage = () => (
     <h2>Screens Page</h2>
     <ScreensPageComponent />
     <Link href="/Substitutions">
-      <a>Next</a>
+      Next
     </Link>
   </div>
 );

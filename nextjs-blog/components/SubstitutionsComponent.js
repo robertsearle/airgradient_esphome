@@ -79,5 +79,5 @@ const Substitutions = () => {
   return <SubstitutionsForm />;
 };
 
-export default Substitutions;
+export default SubstitutionsComponent;
 
