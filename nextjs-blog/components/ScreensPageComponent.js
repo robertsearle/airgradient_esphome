@@ -41,8 +41,10 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
               >{dataRow.id}</label>
             </td>
             <td>
-              <Form.Check
-                checked={dataRow.show}
+              <Form.Check 
+                disabled={dataRow.favorite}
+                hidden={dataRow.favorite}
+                checked={!dataRow.favorite && dataRow.show}
                 onChange={() => handleCheckboxChange(index, 'show')}
               />
             </td>
@@ -53,9 +55,13 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
               />
             </td>
             <td>
-              <label
-                type="text"
-              ><pre>{MainObjectType.formatYamlData(dataRow.object)}</pre></label>
+              <label type="text" >
+                <font size="-2">
+                  <pre>
+                    {MainObjectType.formatYamlData(dataRow.object)}
+                  </pre>
+                </font>
+              </label>
             </td>
           </tr>
         ))}
