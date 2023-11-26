@@ -9,13 +9,14 @@ import { InferGetStaticPropsType, GetStaticProps } from "next";
 
 
 const ScreensPage = () => {
+  //let { data, setData } = useContext(MyContext);
+  //const [data, setData] = useContext(MyContext);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
 
   const handleDataUpdate = (newData) => {
-    let { data, setData } = useContext(MyContext);
-    let old = data;
+    console.log("update", newData);
     setData({
       ...newData,
     });
@@ -27,6 +28,7 @@ const ScreensPage = () => {
       fetchData().then((data) => {
         console.log("fetch data", data.props.pages);
         if (isLoading) {
+          console.log("setting data", data.props.pages);
           setData(data.props.pages);
         }
       });
@@ -39,7 +41,7 @@ const ScreensPage = () => {
   const fetchData = async () => {
     console.log("pages start");
     //const res = await fetch("http://localhost:3000/airgradient_esphome/display_sh1106_128_64.yaml");
-    const res = await fetch("http:display_sh1106_128_64.yaml");
+    const res = await fetch("https://robertsearle.github.io/airgradient_esphome/display_sh1106_128_64.yaml");
     console.log("res", res);
     const body = await res.text();
     console.log("body", body);
