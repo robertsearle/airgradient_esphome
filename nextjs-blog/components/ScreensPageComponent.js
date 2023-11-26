@@ -11,8 +11,14 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
       if (dataRows == null) 
 	return;
       let newData = Object.assign({}, dataRows); 
-      newData[index] = { ...newData[index], [checkboxName]: !newData[index][checkboxName] };
-      console.log (newData, index, checkboxName);
+      if (checkboxName === 'show') {
+        newData[index].show = ! newData[index].show;
+      } else if (checkboxName === 'favorite') {
+        newData[index].favorite = !newData[index].favorite; 
+      } else {
+        console.error("Error with check box problem", index, checkboxName);
+      }
+      console.log ("components update", newData, index, checkboxName);
       onDataUpdate(newData); // Call the callback to update the parent component
   };
 
