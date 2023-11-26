@@ -38,7 +38,8 @@ const ScreensPage = () => {
 
   const fetchData = async () => {
     console.log("pages start");
-    const res = await fetch("http://localhost:3000/airgradient_esphome/display_sh1106_128_64.yaml");
+    //const res = await fetch("http://localhost:3000/airgradient_esphome/display_sh1106_128_64.yaml");
+    const res = await fetch("http:display_sh1106_128_64.yaml");
     console.log("res", res);
     const body = await res.text();
     console.log("body", body);
