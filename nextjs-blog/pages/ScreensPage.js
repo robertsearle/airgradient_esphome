@@ -15,8 +15,9 @@ const ScreensPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
 
-  const handleDataUpdate = (newData) => {
-    console.log("update", newData);
+  const handleDataUpdate = (updateData) => {
+    console.log("update", updateData);
+    let newData = Object.assign({}, updateData); 
     setData({
       ...newData,
     });
