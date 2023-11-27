@@ -39,8 +39,8 @@ const ScreensPage = () => {
 
   const fetchData = async () => {
     console.log("pages start");
-    const res = await fetch("http://localhost:3000/display_sh1106_128_64.yaml");
-    //const res = await fetch("https://robertsearle.github.io/airgradient_esphome/display_sh1106_128_64.yaml");
+    //const res = await fetch("http://localhost:3000/display_sh1106_128_64.yaml");
+    const res = await fetch("https://robertsearle.github.io/airgradient_esphome/display_sh1106_128_64.yaml");
     console.log("res", res);
     const body = await res.text();
     console.log("body", body);
@@ -67,9 +67,9 @@ const ScreensPage = () => {
   const generateYamlFile = () => {
      if (yaml === 0 || yaml.length == 0)
        return "N/A";
-     let newYaml = { ...yaml, };
+     let newYaml = Object.assign([], yaml);
      console.log ("data", data);
-     newYaml = newYaml[0].pages.filter( e => {
+     const newPages = newYaml[0].pages.filter( e => {
        const l = data.filter(e2  => e2.id == e.id);
        if (l.length > 0) {
          return l[0].show  && !l[0].favorite;
@@ -79,16 +79,19 @@ const ScreensPage = () => {
      });
      const favs = data.filter( e => e.favorite);
      if (favs.length > 0) {
-       for (var i = newYaml.length-1; i>= 0;  i--) {
+       for (var i = newPages.length-1; i>= 0;  i--) {
          for (var j = favs.length-1; j>=0; j--) {
            let newData = Object.assign({}, favs[j].object);
            newData.id = newData.id + "_" + i;
-           newYaml.splice(i, 0, newData); 
+           newPages.splice(i, 0, newData); 
          }
        }
      }
+     newYaml[0].pages = newPages;
      console.log("newYaml values", newYaml);
-     return MainObjectType.formatYamlData(newYaml);
+     return MainObjectType.formatYamlData(newYaml)
+       .replaceAll(/^-/g, '  -')
+       .replaceAll(/\n/g, '\n  ');
   }
 
 
@@ -107,7 +110,7 @@ const ScreensPage = () => {
         <Form.Group style={{width:"100%"}} >
           <Form.Label>Replace the file <code>includes/display_sh1106_128_64.yaml</code></Form.Label>
           <br/>
-          <Form.Control as="textarea" style={{width:"100%"}} rows="20" value={generateYamlFile()} />
+          <Form.Control readOnly as="textarea" style={{width:"100%"}} rows="20" value={generateYamlFile()} />
         </Form.Group>
       </div>
     );
