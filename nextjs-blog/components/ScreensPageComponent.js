@@ -10,7 +10,7 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
   const handleCheckboxChange = (index, checkboxName) => {
       if (dataRows == null) 
 	return;
-      let newData = Object.assign({}, dataRows); 
+      let newData = Object.assign([], dataRows); 
       if (checkboxName === 'show') {
         newData[index].show = ! newData[index].show;
       } else if (checkboxName === 'favorite') {

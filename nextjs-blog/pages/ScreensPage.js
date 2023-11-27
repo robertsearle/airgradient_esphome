@@ -17,8 +17,8 @@ const ScreensPage = () => {
 
   const handleDataUpdate = (updateData) => {
     console.log("update", updateData);
-    let newData = Object.assign({}, updateData); 
-    setData({ ...newData, });
+    let newData = Object.assign([], updateData); 
+    setData(newData);
   };
 
 
@@ -64,6 +64,34 @@ const ScreensPage = () => {
   };
 
 
+  const generateYamlFile = () => {
+     if (yaml === 0 || yaml.length == 0)
+       return "N/A";
+     let newYaml = { ...yaml, };
+     console.log ("data", data);
+     newYaml = newYaml[0].pages.filter( e => {
+       const l = data.filter(e2  => e2.id == e.id);
+       if (l.length > 0) {
+         return l[0].show  && !l[0].favorite;
+       } else {
+         return false;
+       }
+     });
+     const favs = data.filter( e => e.favorite);
+     if (favs.length > 0) {
+       for (var i = newYaml.length-1; i>= 0;  i--) {
+         for (var j = favs.length-1; j>=0; j--) {
+           let newData = Object.assign({}, favs[j].object);
+           newData.id = newData.id + "_" + i;
+           newYaml.splice(i, 0, newData); 
+         }
+       }
+     }
+     console.log("newYaml values", newYaml);
+     return MainObjectType.formatYamlData(newYaml);
+  }
+
+
   if (isLoading) {
     return (<p>Loading....</p>);
   } else {
@@ -77,12 +105,9 @@ const ScreensPage = () => {
         <Link href="/Substitutions">Next</Link> 
         <br/>
         <Form.Group style={{width:"100%"}} >
-          <Form.Label>Replace the file <code>includes/display_sh1106_128_64.yaml</code></Form.Label><br/>
-          <Form.Control as="textarea" style={{width:"100%"}} rows="20">
-            {
-              MainObjectType.formatYamlData(yaml)
-            }
-          </Form.Control>
+          <Form.Label>Replace the file <code>includes/display_sh1106_128_64.yaml</code></Form.Label>
+          <br/>
+          <Form.Control as="textarea" style={{width:"100%"}} rows="20" value={generateYamlFile()} />
         </Form.Group>
       </div>
     );
