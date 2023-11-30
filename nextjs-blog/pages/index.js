@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { createContext, useContext, useState } from 'react';
 import MyContext from '../context/mycontext.context';
 
-
 const IndexPage = () => {
 const context = useContext(MyContext);
 
@@ -13,6 +12,7 @@ const context = useContext(MyContext);
 
   //return ( <MyContext.Provider value ={new MyContext([new ScreenData('1', false, false, null)] )}>
   //<MyContext.Provider value ={context}>
+    //<div className="text-3xl font-bold underline">
   return (
     <div>
       <h1>Wizard</h1>
