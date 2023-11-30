@@ -5,7 +5,7 @@ import Link from "next/link";
 import ScreensPageComponent from "../components/ScreensPageComponent";
 import ScreenData from "../src/ScreenData";
 import * as MainObjectType from "../src/MainObjectType";
-import { InferGetStaticPropsType, GetStaticProps } from "next";
+//import { InferGetStaticPropsType, GetStaticProps } from "next";
 import Form from 'react-bootstrap/Form';
 
 const ScreensPage = () => {
@@ -107,10 +107,10 @@ const ScreensPage = () => {
         />
         <Link href="/Substitutions">Next</Link> 
         <br/>
-        <Form.Group style={{width:"100%"}} >
+        <Form.Group className="" style={{width:"90%"}} >
           <Form.Label>Replace the file <code>includes/display_sh1106_128_64.yaml</code></Form.Label>
           <br/>
-          <Form.Control readOnly as="textarea" style={{width:"100%"}} rows="20" value={generateYamlFile()} />
+          <Form.Control readOnly as="textarea"  className="text-xs font-mono block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  style={{width:"100%"}} rows="20" value={generateYamlFile()} />
         </Form.Group>
       </div>
     );
