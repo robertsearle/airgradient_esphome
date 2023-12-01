@@ -33,7 +33,9 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
       </thead>
       <tbody>
         { dataRows != null && dataRows.map((dataRow, index) => (
-          <tr key={index} className={ (index%2) ? "border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-100 hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600" : "border-b bg-white dark:border-neutral-500 dark:bg-neutral-200 hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"}>
+          <tr key={index} className={ (index % 2) 
+                                          ? "border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-100 hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"
+                                          : "border-b bg-white       dark:border-neutral-500 dark:bg-neutral-200 hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"}>
             <td className="whitespace-nowrap px-6 py-4">
               <label
                 type="text"

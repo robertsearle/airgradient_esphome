@@ -11,10 +11,11 @@ export default function MyApp({
   example,
 }: AppProps & AppOwnProps) {
   return (
-    <>
-      <p>Data: {example}</p>
+    <div className="md:container md:mx-auto">
+      <div><p>Data: {example}</p></div>
+      <br/>
       <Component {...pageProps} />
-    </>
+    </div>
   )
 }
  
