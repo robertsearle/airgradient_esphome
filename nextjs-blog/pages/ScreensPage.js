@@ -42,14 +42,9 @@ const ScreensPage = () => {
 
 
   const fetchData = async () => {
-    console.log("pages start");
-    //const res = await fetch("http://localhost:3000/display_sh1106_128_64.yaml");
     const res = await fetch("https://robertsearle.github.io/airgradient_esphome/display_sh1106_128_64.yaml");
-    console.log("res", res);
     const body = await res.text();
-    console.log("body", body);
     const newYaml = MainObjectType.readYamlFile(body);
-    console.log("newYaml", newYaml);
     if (newYaml === null) {
       console.error("Problem with the yaml", res);
       return null;
@@ -57,7 +52,6 @@ const ScreensPage = () => {
     const pages = newYaml[0].pages.map(
       (s) => new ScreenData(s.id, true, false, s)
     );
-    console.log("pages", pages);
     if (isLoading) {
       setData(pages);
       setYaml(newYaml);

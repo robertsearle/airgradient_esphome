@@ -1,6 +1,5 @@
 // components/ScreensPageComponent.js
 import React, { useState } from 'react';
-import { Table, Form } from 'react-bootstrap';
 import ScreenData from '../src/ScreenData';
 import * as MainObjectType from '../src/MainObjectType';
 
@@ -22,7 +21,7 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
   };
 
   return (
-    <Table >
+    <table >
       <thead> 
         <tr>
           <th>ID</th>
@@ -35,20 +34,19 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
         { dataRows != null && dataRows.map((dataRow, index) => (
           <tr key={index}>
             <td >
-              <label
-                type="text"
-              >{dataRow.id}</label>
+              <label type="text" className="text-base" >{dataRow.id}</label>
             </td>
             <td >
-              <Form.Check 
-                disabled={dataRow.favorite}
+              <input type="checkbox" 
+                disabled={dataRow.id == 'boot' || dataRow.favorite}
                 hidden={dataRow.favorite}
                 checked={!dataRow.favorite && dataRow.show}
                 onChange={() => handleCheckboxChange(index, 'show')}
               />
             </td>
             <td >
-              <Form.Check
+              <input type="checkbox"
+                disabled={dataRow.id == 'boot'}
                 checked={dataRow.favorite}
                 onChange={() => handleCheckboxChange(index, 'favorite')}
               />
@@ -61,7 +59,7 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
           </tr>
         ))}
       </tbody>
-    </Table>
+    </table>
   );
 };
 
