@@ -115,7 +115,7 @@ const ScreensPage = () => {
         <Form.Group  >
           <Form.Label>Replace the file <code className="text-teal-200 dark:text-teal-700" >includes/display_sh1106_128_64.yaml</code></Form.Label>
           <br/>
-          <Form.Control readOnly as="textarea"  className="text-xs font-mono block p-2.5 w-full text-sm text-gray-900 bg-teal-200 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-teal-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" rows="20" value={generateYamlFile()} />
+          <Form.Control readOnly as="textarea" className="textarea"  rows="20" value={generateYamlFile()} />
         </Form.Group>
       </div>
     );
