@@ -22,7 +22,7 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
   };
 
   return (
-    <Table className="table-auto">
+    <Table >
       <thead> 
         <tr>
           <th>ID</th>
@@ -33,15 +33,13 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
       </thead>
       <tbody>
         { dataRows != null && dataRows.map((dataRow, index) => (
-          <tr key={index} className={ (index % 2) 
-                                          ? "border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-100 hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"
-                                          : "border-b bg-white       dark:border-neutral-500 dark:bg-neutral-200 hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"}>
-            <td className="whitespace-nowrap px-6 py-4">
+          <tr key={index}>
+            <td >
               <label
                 type="text"
               >{dataRow.id}</label>
             </td>
-            <td className="whitespace-nowrap px-6 py-4 text-center">
+            <td >
               <Form.Check 
                 disabled={dataRow.favorite}
                 hidden={dataRow.favorite}
@@ -49,17 +47,15 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
                 onChange={() => handleCheckboxChange(index, 'show')}
               />
             </td>
-            <td className="whitespace-nowrap px-6 py-4 text-center">
+            <td >
               <Form.Check
                 checked={dataRow.favorite}
                 onChange={() => handleCheckboxChange(index, 'favorite')}
               />
             </td>
-            <td className="whitespace-nowrap text-xs px-6 py-4 text-sm ">
-              <label type="text" >
-                <pre> 
+            <td >
+              <label type="text" className="text-[0.625rem] whitespace-pre"> 
                     {MainObjectType.formatYamlData(dataRow.object)}
-                </pre> 
               </label>
             </td>
           </tr>
