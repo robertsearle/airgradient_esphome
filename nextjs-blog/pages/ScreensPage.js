@@ -6,7 +6,6 @@ import ScreensPageComponent from "../components/ScreensPageComponent";
 import ScreenData from "../src/ScreenData";
 import * as MainObjectType from "../src/MainObjectType";
 //import { InferGetStaticPropsType, GetStaticProps } from "next";
-import Form from 'react-bootstrap/Form';
 
 const ScreensPage = () => {
   //let { data, setData } = useContext(MyContext);
@@ -105,12 +104,12 @@ const ScreensPage = () => {
         />
         <Link href="/Substitutions">Next</Link> 
         <br/>
-        <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"/>
-        <Form.Group  >
-          <Form.Label>Replace the file <code className="text-teal-200 dark:text-teal-700" >includes/display_sh1106_128_64.yaml</code></Form.Label>
+        <hr className="items-center justify-center  h-1 w-1/3 m-[5rem]  bg-gray-100 border-0 rounded dark:bg-gray-700"/>
+        <form className="md:w-1/2" >
+          <p>Replace the file <code className="text-teal-200 dark:text-teal-700" >includes/display_sh1106_128_64.yaml</code></p>
           <br/>
-          <Form.Control readOnly as="textarea" className="textarea"  rows="20" value={generateYamlFile()} />
-        </Form.Group>
+          <textarea readOnly as="textarea" className="textarea"  rows="10"  value={generateYamlFile()} />
+        </form>
       </div>
     );
   }
