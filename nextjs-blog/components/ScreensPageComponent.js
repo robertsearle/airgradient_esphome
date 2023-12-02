@@ -39,8 +39,7 @@ const ScreensPageComponent = ({ initialData, onDataUpdate }) => {
             <td >
               <input type="checkbox" 
                 disabled={dataRow.id == 'boot' || dataRow.favorite}
-                hidden={dataRow.favorite}
-                checked={!dataRow.favorite && dataRow.show}
+                checked={ (!dataRow.favorite && dataRow.show) || dataRow.favorite }
                 onChange={() => handleCheckboxChange(index, 'show')}
               />
             </td>
