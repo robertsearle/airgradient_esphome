@@ -41,6 +41,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: 'nextjs-blog/package-lock.json'
     - run: cd nextjs-blog && npm install
+    - run: cd nextjs-blog && cp -p ../includes/display_sh1106_128_64.yaml  public/ && cp -p ../includes/substitutions.yaml  public/ 
     - run: cd nextjs-blog && npm run build --if-present
 #    - run: cd nextjs-blog && npm test
 
