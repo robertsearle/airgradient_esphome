@@ -1,0 +1,6 @@
+substitutions:
+  devicename: "airgradient-pro"
+  upper_devicename: "AG Pro"
+  ag_esphome_config_version: 0.9.9
+  DEFAULT_DISPLAY_TEMP: RESTORE_DEFAULT_ON
+  CO2_ABC_OFFSET: '0'
