@@ -11,6 +11,10 @@
 # next.js
 /.next/
 /out/
+public/airgradient_esphome/
+public/display_sh1106_128_64.yaml
+public/substitutions.yaml
+
 
 next-env.d.ts
 
