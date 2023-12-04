@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 
-const SubstitutionsComponent = (props, onDataUpdate) => {
+const SubstitutionsComponent = ({props, onDataUpdate}) => {
   console.log("SubstitutionsComponent", props);
 
   const [data, setData] = useState(
-    props === undefined || props === null ? null : {data: {...props.props.substitutions}, defaults: {...props.props.substitutions} } 
+    props === undefined || props === null ? null : {data: {...props.data}, defaults: {...props.defaults} } 
   );
 
   const handleInputChange = (fieldName, value) => {
     let newData = Object.assign({}, data);
     newData.data[fieldName] = value;
-    setData(newData);
+    console.log("handleInputChange", newData);
+    onDataUpdate(newData);
   };
 
 

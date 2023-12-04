@@ -12,10 +12,11 @@ const Substitutions = () => {
   useEffect(() => {
     if (isLoading) {
       fetchData().then((rawPages) => {
-        console.log("fetch pages", rawPages);
+        console.log("fetch data", rawPages);
         if (isLoading) {
-          console.log("setting pages", rawPages);
+          console.log("setting data", rawPages);
           setData(rawPages);
+          setIsLoading(false);
         }
       });
     } else {
@@ -23,6 +24,13 @@ const Substitutions = () => {
     }
   }, []);
 
+  const emptyValues = () => {return {
+    devicename: "",
+    upper_devicename: "",
+    ag_esphome_config_version: "",
+    DEFAULT_DISPLAY_TEMP: "",
+    CO2_ABC_OFFSET: "" 
+  };};
 
   const fetchData = async () => {
     const res = await fetch("/airgradient_esphome/substitutions.yaml",);
@@ -36,24 +44,38 @@ const Substitutions = () => {
     }
     if (isLoading) {
       console.log("fetchData", "loading", newData);
-      setData(newData);
-      setIsLoading(false);
+      return {data: emptyValues(), defaults: {...newData} };
+    } else {
+      return null;
     }
-    return newData;
   };
 
 
   const generateYamlFile = () => {
     if (data === undefined || data === null) {
-      return "N/A";
+      return "loading...";
     }
-    let newData = Object.assign({}, data);
-    console.log("generateYamlFile", newData);
-    return MainObjectType.formatYamlData(newData)
-      .replaceAll(/^-/g, "  -")
-      .replaceAll(/\n/g, "\n  ");
+    let userData = Object.assign({}, data.data);
+    for (var prop in userData) {
+      if (Object.prototype.hasOwnProperty.call(userData, prop)) {
+        if (userData[prop] == "") {
+          delete userData[prop];
+        }
+      }
+    }
+    let combinedData = Object.assign({}, data.defaults);
+    combinedData = Object.assign(combinedData, userData);
+    console.log("generateYamlFile", userData, combinedData);
+    combinedData = { substitutions: combinedData};
+    return MainObjectType.formatYamlData(combinedData)
+      .replaceAll(/substitutions\:\n/g, "");
   };
 
+
+  const onDataUpdate = (newData) => {
+    console.log("onDataUpdate", newData);
+    setData(newData);
+  }
 
   console.log("data", data, isLoading);
   if (isLoading) {
@@ -62,7 +84,7 @@ const Substitutions = () => {
     return (
       <div>
         <h2>Substitutions Page</h2>
-        <SubstitutionsComponent props={ data } />
+        <SubstitutionsComponent props={ data }  onDataUpdate={onDataUpdate} />
         <Link href="/Final">Next</Link>
         <Link href="/ScreensPage">Previous</Link>
         <br />
@@ -71,7 +93,7 @@ const Substitutions = () => {
           <p>
             Replace the file{" "}
             <code className="text-teal-200 dark:text-teal-700">
-              includes/display_sh1106_128_64.yaml
+              includes/substitutions.yaml
             </code>
           </p>
           <br />
