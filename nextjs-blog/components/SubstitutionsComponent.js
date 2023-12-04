@@ -73,10 +73,11 @@ const SubstitutionsComponent = (props, onDataUpdate) => {
           />
         </div>
         <div className="md:w-1/3">
-          <label> CO2 ABC Offset: </label>
+          <label htmlFor="text_CO2_ABC_OFFSET"> CO2 ABC Offset: </label>
         </div>
         <div className="md:w-2/3">
           <input
+            id="text_CO2_ABC_OFFSET"
             type="text"
             placeholder={data.defaults.CO2_ABC_OFFSET}
             value={data.data.CO2_ABC_OFFSET}
