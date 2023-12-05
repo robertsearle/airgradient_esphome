@@ -92,7 +92,7 @@ const Substitutions = () => {
         <form className="md:w-1/2">
           <p>
             Replace the file{" "}
-            <code className="text-teal-200 dark:text-teal-700">
+            <code className="text-teal-200 dark:text-teal-550">
               includes/substitutions.yaml
             </code>
           </p>

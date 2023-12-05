@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-const SubstitutionsComponent = ({props, onDataUpdate}) => {
+const SubstitutionsComponent = ({ props, onDataUpdate }) => {
   console.log("SubstitutionsComponent", props);
 
   const [data, setData] = useState(
-    props === undefined || props === null ? null : {data: {...props.data}, defaults: {...props.defaults} } 
+    props === undefined || props === null
+      ? null
+      : { data: { ...props.data }, defaults: { ...props.defaults } },
   );
 
   const handleInputChange = (fieldName, value) => {
@@ -14,84 +16,82 @@ const SubstitutionsComponent = ({props, onDataUpdate}) => {
     onDataUpdate(newData);
   };
 
-
   if (data === undefined || data == null) {
-    return (<div>loading screen...</div>);
+    return <div>loading screen...</div>;
   } else {
     console.log("rendering", data);
     return (
-      <form className="flex flex-wrap items-center my-10">
-        <div className="w-1/3">
-          <label>Device Name: </label>
+      <div class="w-full max-w-xl bg-sky-100 dark:bg-sky-700 ">
+        <div className="grid auto-cols-max grid-cols-2 gap-4 ">
+          <div className="h-1 m-[1rem]  ">
+            <label>Device Name: </label>
+          </div>
+          <div className="h-1 m-[1rem]  ">
+            <input
+              type="text"
+              placeholder={data.defaults.devicename}
+              value={data.data.devicename}
+              onChange={(e) => handleInputChange("devicename", e.target.value)}
+            />
+          </div>
+          <div className="h-1 m-[1rem]  ">
+            <label>Upper Device Name: </label>
+          </div>
+          <div className="h-1 m-[1rem]  ">
+            <input
+              type="text"
+              placeholder={data.defaults.upper_devicename}
+              value={data.data.upper_devicename}
+              onChange={(e) =>
+                handleInputChange("upper_devicename", e.target.value)
+              }
+            />
+          </div>
+          <div className="h-1 m-[1rem]  ">
+            <label> EspHome Config Version: </label>
+          </div>
+          <div className="h-1 m-[1rem]  ">
+            <input
+              type="text"
+              placeholder={data.defaults.ag_esphome_config_version}
+              value={data.data.ag_esphome_config_version}
+              onChange={(e) =>
+                handleInputChange("ag_esphome_config_version", e.target.value)
+              }
+            />
+          </div>
+          <div className="h-1 m-[1rem]  ">
+            <label>Default Display Temp: </label>
+          </div>
+          <div className="h-1 m-[1rem]  ">
+            <input
+              type="text"
+              placeholder={data.defaults.DEFAULT_DISPLAY_TEMP}
+              value={data.data.DEFAULT_DISPLAY_TEMP}
+              onChange={(e) =>
+                handleInputChange("DEFAULT_DISPLAY_TEMP", e.target.value)
+              }
+            />
+          </div>
+          <div className="h-5 m-[1rem] ">
+            <label htmlFor="text_CO2_ABC_OFFSET"> CO2 ABC Offset: </label>
+          </div>
+          <div className="h-5 m-[1rem] ">
+            <input
+              id="text_CO2_ABC_OFFSET"
+              type="text"
+              placeholder={data.defaults.CO2_ABC_OFFSET}
+              value={data.data.CO2_ABC_OFFSET}
+              onChange={(e) =>
+                handleInputChange("CO2_ABC_OFFSET", e.target.value)
+              }
+            />
+          </div>
         </div>
-        <div className="w-2/3">
-          <input
-            type="text"
-            placeholder={data.defaults.devicename}
-            value={data.data.devicename}
-            onChange={(e) =>
-              handleInputChange("devicename", e.target.value)
-            }
-          />
-        </div>
-        <div className="w-1/3">
-          <label>Upper Device Name: </label>
-        </div>
-        <div className="w-2/3">
-          <input
-            type="text"
-            placeholder={data.defaults.upper_devicename}
-            value={data.data.upper_devicename}
-            onChange={(e) =>
-              handleInputChange("upper_devicename", e.target.value)
-            }
-          />
-        </div>
-        <div className="w-1/3">
-          <label> EspHome Config Version: </label>
-        </div>
-        <div className="w-2/3">
-          <input
-            type="text"
-            placeholder={data.defaults.ag_esphome_config_version}
-            value={data.data.ag_esphome_config_version}
-            onChange={(e) =>
-              handleInputChange("ag_esphome_config_version", e.target.value)
-            }
-          />
-        </div>
-        <div className="md:w-1/3">
-          <label>Default Display Temp: </label>
-        </div>
-        <div className="md:w-2/3">
-          <input
-            type="text"
-            placeholder={data.defaults.DEFAULT_DISPLAY_TEMP}
-            value={data.data.DEFAULT_DISPLAY_TEMP}
-            onChange={(e) =>
-              handleInputChange("DEFAULT_DISPLAY_TEMP", e.target.value)
-            }
-          />
-        </div>
-        <div className="md:w-1/3">
-          <label htmlFor="text_CO2_ABC_OFFSET"> CO2 ABC Offset: </label>
-        </div>
-        <div className="md:w-2/3">
-          <input
-            id="text_CO2_ABC_OFFSET"
-            type="text"
-            placeholder={data.defaults.CO2_ABC_OFFSET}
-            value={data.data.CO2_ABC_OFFSET}
-            onChange={(e) =>
-              handleInputChange("CO2_ABC_OFFSET", e.target.value)
-            }
-          />
-        </div>
-      </form>
+      </div>
     );
   }
 };
-
 
 export default SubstitutionsComponent;
 
