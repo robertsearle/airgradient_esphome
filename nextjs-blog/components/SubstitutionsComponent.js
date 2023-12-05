@@ -23,10 +23,10 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
     return (
       <div class="w-full max-w-xl bg-sky-100 dark:bg-sky-700 ">
         <div className="grid auto-cols-max grid-cols-2 gap-4 ">
-          <div className="h-1 m-[1rem]  ">
+          <div className="h-1 m-[1rem] mt-[1.5rem] ">
             <label>Device Name: </label>
           </div>
-          <div className="h-1 m-[1rem]  ">
+          <div className="h-1 m-[1rem] mt-[1.5rem] ">
             <input
               type="text"
               placeholder={data.defaults.devicename}
@@ -63,7 +63,7 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
           <div className="h-1 m-[1rem]  ">
             <label>Default Display Temp: </label>
           </div>
-          <div className="h-1 m-[1rem]  ">
+          <div className="h-1 m-[1rem] ">
             <input
               type="text"
               placeholder={data.defaults.DEFAULT_DISPLAY_TEMP}
@@ -73,10 +73,10 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
               }
             />
           </div>
-          <div className="h-5 m-[1rem] ">
+          <div className="mb-[1.5rem] m-[1rem] ">
             <label htmlFor="text_CO2_ABC_OFFSET"> CO2 ABC Offset: </label>
           </div>
-          <div className="h-5 m-[1rem] ">
+          <div className="mb-[1.5rem] m-[1rem] ">
             <input
               id="text_CO2_ABC_OFFSET"
               type="text"
