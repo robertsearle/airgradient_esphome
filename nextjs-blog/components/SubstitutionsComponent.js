@@ -8,6 +8,7 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
       ? null
       : { data: { ...props.data }, defaults: { ...props.defaults } },
   );
+  data.data.DEFAULT_DISPLAY_TEMP = data.defaults.DEFAULT_DISPLAY_TEMP;
 
   const handleInputChange = (fieldName, value) => {
     let newData = Object.assign({}, data);
@@ -21,7 +22,7 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
   } else {
     console.log("rendering", data);
     return (
-      <div class="w-full max-w-xl bg-sky-100 dark:bg-sky-700 ">
+      <div className="w-full max-w-xl bg-sky-100 dark:bg-sky-700 ">
         <div className="grid auto-cols-max grid-cols-2 gap-4 ">
           <div className="h-1 m-[1rem] mt-[1.5rem] ">
             <label>Device Name: </label>
@@ -61,17 +62,30 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
             />
           </div>
           <div className="h-1 m-[1rem]  ">
-            <label>Default Display Temp: </label>
+            <label>Default Display Temp: {data.defaults.DEFAULT_DISPLAY_TEMP}</label>
           </div>
           <div className="h-1 m-[1rem] ">
-            <input
+            <select
               type="text"
               placeholder={data.defaults.DEFAULT_DISPLAY_TEMP}
               value={data.data.DEFAULT_DISPLAY_TEMP}
               onChange={(e) =>
                 handleInputChange("DEFAULT_DISPLAY_TEMP", e.target.value)
               }
-            />
+            >
+            {
+              [
+                "RESTORE_DEFAULT_OFF",
+                "RESTORE_DEFAULT_ON",
+                "RESTORE_INVERTED_DEFAULT_OFF",
+                "RESTORE_INVERTED_DEFAULT_ON",
+                "ALWAYS_OFF",
+                "ALWAYS_ON",
+              ].map((x, y) => (
+                <option key={y} value={x} >{x}</option>
+              ))
+            }
+            </select>
           </div>
           <div className="mb-[1.5rem] m-[1rem] ">
             <label htmlFor="text_CO2_ABC_OFFSET"> CO2 ABC Offset: </label>
@@ -79,7 +93,9 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
           <div className="mb-[1.5rem] m-[1rem] ">
             <input
               id="text_CO2_ABC_OFFSET"
-              type="text"
+              min="0"
+              max="999"
+              type="number"
               placeholder={data.defaults.CO2_ABC_OFFSET}
               value={data.data.CO2_ABC_OFFSET}
               onChange={(e) =>
