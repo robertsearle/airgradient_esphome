@@ -15,7 +15,7 @@ const context = useContext(MyContext);
   return (
     <div>
       <h1>Wizard</h1>
-      <Link href="/ScreensPage">
+      <Link href="/ScreensPage"  className="button-primary h-20">
         Start Wizard
       </Link>
     </div>);

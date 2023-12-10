@@ -22,3 +22,17 @@ tr:nth-child(odd) {
 .textarea {
     @apply text-[0.5rem] font-mono whitespace-pre block p-2.5 w-full text-blue-900 bg-teal-200 rounded-lg border border-blue-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-teal-700 dark:border-blue-600 dark:placeholder-blue-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
+
+
+@layer base {
+  a.button {
+    @apply inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-[1rem]  h-[1.5rem];
+  }
+  a.button-prev {
+    @apply inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-[1rem]  h-[1.5rem] float-left;
+  }
+  a.button-primary {
+    @apply inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-[1rem]  h-[1.5rem] float-right;
+  }
+}
+

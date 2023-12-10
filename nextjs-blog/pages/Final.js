@@ -5,7 +5,7 @@ const Final = () => (
   <div>
     <h2>Final Page</h2>
     <p>Congratulations! You've completed the wizard.</p>
-    <Link href="/ScreensPage">
+    <Link href="/ScreensPage" className="button-primary">
       Start Over
     </Link>
   </div>

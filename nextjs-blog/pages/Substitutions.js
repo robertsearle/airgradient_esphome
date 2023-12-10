@@ -85,8 +85,8 @@ const Substitutions = () => {
       <div>
         <h2>Substitutions Page</h2>
         <SubstitutionsComponent props={ data }  onDataUpdate={onDataUpdate} />
-        <Link href="/Final">Next</Link>
-        <Link href="/ScreensPage">Previous</Link>
+        <Link href="/ScreensPage" className="button-prev">Previous</Link>
+        <Link href="/Final" className="button-primary">Next</Link>
         <br />
         <hr className="items-center justify-center  h-1 w-1/3 m-[5rem]  bg-gray-100 border-0 rounded dark:bg-gray-700" />
         <form className="md:w-1/2">

@@ -2,14 +2,12 @@
 import { createContext, useEffect, useContext, useState } from "react";
 import MyContext from "../context/mycontext.context";
 import Link from "next/link";
+import { InferGetStaticPropsType, GetStaticProps } from "next";
 import ScreensPageComponent from "../components/ScreensPageComponent";
 import ScreenData from "../src/ScreenData";
 import * as MainObjectType from "../src/MainObjectType";
-import { InferGetStaticPropsType, GetStaticProps } from "next";
 
 const ScreensPage = () => {
-  //let { data, setData } = useContext(MyContext);
-  //const [data, setData] = useContext(MyContext);
   const [pages, setPages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [yaml, setYaml] = useState(null);
@@ -95,7 +93,7 @@ const ScreensPage = () => {
       <div>
         <h2>Screens Page</h2>
         <ScreensPageComponent props={{ pages }} onDataUpdate={handleDataUpdate} />
-        <Link href="/Substitutions">Next</Link>
+        <Link href="/Substitutions" className="button-primary">Next</Link>
         <br />
         <hr className="items-center justify-center  h-1 w-1/3 m-[5rem]  bg-gray-100 border-0 rounded dark:bg-gray-700" />
         <form className="md:w-1/2">
