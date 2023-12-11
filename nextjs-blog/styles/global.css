@@ -10,26 +10,26 @@ td {
 
 
 th {
-    @apply bg-sky-100  dark:bg-sky-600
+    @apply bg-sky-600
 }
 tr {
-    @apply border-b dark:border-sky-500  hover:bg-sky-100 dark:hover:bg-sky-600;
+    @apply border-b border-sky-500  hover:bg-sky-600;
 }
 tr:nth-child(even) {
-    @apply bg-sky-100  dark:bg-sky-100    border-b dark:border-sky-500  hover:bg-sky-100 dark:hover:bg-sky-600;
+    @apply bg-sky-100    border-b border-sky-500  hover:bg-sky-600;
 }
 tr:nth-child(odd) {
-    @apply bg-white       dark:bg-sky-200     border-b dark:border-sky-500  hover:bg-sky-100 dark:hover:bg-sky-600;
+    @apply bg-sky-200    border-b border-sky-500  hover:bg-sky-600;
 }
 
 .textarea {
-    @apply text-[0.5rem] font-mono whitespace-pre block p-2.5 w-full text-blue-900 bg-teal-200 rounded-lg border border-blue-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-teal-700 dark:border-blue-600 dark:placeholder-blue-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+    @apply text-[0.5rem] font-mono whitespace-pre block p-2.5 w-full text-white   rounded-lg border border-blue-600 focus:ring-blue-500 focus:border-blue-500 bg-teal-700 placeholder-blue-400 ;
 }
 
 
 @layer base {
   body {
-    @apply bg-sky-100 dark:bg-sky-700;
+    @apply bg-sky-700;
   }
 
   a.button {
