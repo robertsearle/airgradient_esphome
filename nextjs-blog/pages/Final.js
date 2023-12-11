@@ -1,5 +1,5 @@
 // pages/Final.js
-import Link from 'next/link';
+import Link from "next/link";
 
 const Final = () => (
   <div>
@@ -12,4 +12,3 @@ const Final = () => (
 );
 
 export default Final;
-

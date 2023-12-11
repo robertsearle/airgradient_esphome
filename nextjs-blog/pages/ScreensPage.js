@@ -37,7 +37,7 @@ const ScreensPage = () => {
   }, []);
 
   const fetchPages = async () => {
-    const res = await fetch("/airgradient_esphome/display_sh1106_128_64.yaml",);
+    const res = await fetch("/airgradient_esphome/display_sh1106_128_64.yaml");
     const body = await res.text();
     const newYaml = MainObjectType.readYamlFile(body);
     if (newYaml === null) {
@@ -92,8 +92,13 @@ const ScreensPage = () => {
     return (
       <div>
         <h2>Screens Page</h2>
-        <ScreensPageComponent props={{ pages }} onDataUpdate={handleDataUpdate} />
-        <Link href="/Substitutions" className="button-primary">Next</Link>
+        <ScreensPageComponent
+          props={{ pages }}
+          onDataUpdate={handleDataUpdate}
+        />
+        <Link href="/Substitutions" className="button-primary">
+          Next
+        </Link>
         <br />
         <hr className="items-center justify-center  h-1 w-1/3 m-[5rem]  bg-gray-100 border-0 rounded dark:bg-gray-700" />
         <form className="md:w-1/2">
@@ -118,4 +123,3 @@ const ScreensPage = () => {
 };
 
 export default ScreensPage;
-

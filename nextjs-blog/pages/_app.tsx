@@ -1,11 +1,11 @@
 // pages/index.js
 
-import App, { AppContext, AppInitialProps, AppProps } from 'next/app'
+import App, { AppContext, AppInitialProps, AppProps } from "next/app";
 import Link from "next/link";
-import '../styles/global.css';
- 
-type AppOwnProps = { example: string }
- 
+import "../styles/global.css";
+
+type AppOwnProps = { example: string };
+
 export default function MyApp({
   Component,
   pageProps,
@@ -13,13 +13,15 @@ export default function MyApp({
 }: AppProps & AppOwnProps) {
   return (
     <div className="md:container md:mx-auto bg-sky-100 dark:bg-sky-700">
-      <div><p>Data: {example}</p></div>
-      <br/>
+      <div>
+        <p>Data: {example}</p>
+      </div>
+      <br />
       <Component {...pageProps} />
     </div>
-  )
+  );
 }
- 
+
 /*
 MyApp.getInitialProps = async (
   context: AppContext

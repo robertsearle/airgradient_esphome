@@ -21,12 +21,12 @@ const ScreensPageComponent = ({ props, onDataUpdate }) => {
         console.error("Error with check box problem", index, checkboxName);
       }
       console.log("components update", newData, index, checkboxName);
-      onDataUpdate(newData); // Call the callback to update the parent component
+      onDataUpdate(newData);
     }
   };
 
   return (
-    <table>
+    <table className="table-auto">
       <thead>
         <tr>
           <th>ID</th>
@@ -47,7 +47,14 @@ const ScreensPageComponent = ({ props, onDataUpdate }) => {
         {dataRows !== undefined &&
           dataRows != null &&
           dataRows.map((dataRow, index) => (
-            <tr key={index}>
+            <tr
+              key={index}
+              // className={
+              // (index % 2)
+              // ? "bg-sky-100  dark:bg-sky-100    border-b dark:border-sky-500  hover:bg-sky-100 dark:hover:bg-sky-600"
+              // : "bg-sky-200  dark:bg-sky-200    border-b dark:border-sky-500  hover:bg-sky-100 dark:hover:bg-sky-600"
+              // }
+            >
               <td>
                 <label type="text" className="text-base disabled">
                   {dataRow.id}
@@ -84,4 +91,3 @@ const ScreensPageComponent = ({ props, onDataUpdate }) => {
 };
 
 export default ScreensPageComponent;
-

@@ -1,5 +1,5 @@
 class ScreenData {
-  constructor(id = '', show = false, favorite = false, object = null) {
+  constructor(id = "", show = false, favorite = false, object = null) {
     this.id = id;
     this.show = show;
     this.favorite = favorite;
@@ -8,4 +8,3 @@ class ScreenData {
 }
 
 export default ScreenData;
-

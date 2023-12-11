@@ -22,7 +22,7 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
   } else {
     console.log("rendering", data);
     return (
-      <div className="w-full max-w-xl bg-sky-100 dark:bg-sky-700 ">
+      <div className="w-full max-w-xl ">
         <div className="grid auto-cols-max grid-cols-2 gap-4 ">
           <div className="h-1 m-[1rem] mt-[1.5rem] ">
             <label>Device Name: </label>
@@ -62,7 +62,9 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
             />
           </div>
           <div className="h-1 m-[1rem]  ">
-            <label>Default Display Temp: {data.defaults.DEFAULT_DISPLAY_TEMP}</label>
+            <label>
+              Default Display Temp: {data.defaults.DEFAULT_DISPLAY_TEMP}
+            </label>
           </div>
           <div className="h-1 m-[1rem] ">
             <select
@@ -73,8 +75,7 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
                 handleInputChange("DEFAULT_DISPLAY_TEMP", e.target.value)
               }
             >
-            {
-              [
+              {[
                 "RESTORE_DEFAULT_OFF",
                 "RESTORE_DEFAULT_ON",
                 "RESTORE_INVERTED_DEFAULT_OFF",
@@ -82,9 +83,10 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
                 "ALWAYS_OFF",
                 "ALWAYS_ON",
               ].map((x, y) => (
-                <option key={y} value={x} >{x}</option>
-              ))
-            }
+                <option key={y} value={x}>
+                  {x}
+                </option>
+              ))}
             </select>
           </div>
           <div className="mb-[1.5rem] m-[1rem] ">
@@ -110,5 +112,3 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
 };
 
 export default SubstitutionsComponent;
-
-

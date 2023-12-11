@@ -1,11 +1,10 @@
 // pages/index.js
-import Link from 'next/link';
-import { createContext, useContext, useState } from 'react';
-import MyContext from '../context/mycontext.context';
+import Link from "next/link";
+import { createContext, useContext, useState } from "react";
+import MyContext from "../context/mycontext.context";
 
 const IndexPage = () => {
-const context = useContext(MyContext);
-
+  const context = useContext(MyContext);
 
   const [dataRows, setDataRows] = useState([]);
   //const contextValue = React.useMemo(() => ({signedIn, setSignedIn}), [singedIn])
@@ -15,13 +14,12 @@ const context = useContext(MyContext);
   return (
     <div>
       <h1>Wizard</h1>
-      <Link href="/ScreensPage"  className="button-primary h-20">
+      <Link href="/ScreensPage" className="button-primary h-20">
         Start Wizard
       </Link>
-    </div>);
+    </div>
+  );
 };
-  //</MyContext.Provider>
- 
+//</MyContext.Provider>
 
 export default IndexPage;
-

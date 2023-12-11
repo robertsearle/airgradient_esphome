@@ -20,4 +20,3 @@ class SubstitutionsData {
 }
 
 export default SubstitutionsData;
-
