@@ -79,7 +79,10 @@ const ScreensPageComponent = ({ props, onDataUpdate }) => {
                 />
               </td>
               <td>
-                <label type="text" className="text-[0.625rem] whitespace-pre">
+                <label
+                  type="text"
+                  className="text-[0.625rem] whitespace-pre font-mono"
+                >
                   {MainObjectType.formatYamlData(dataRow.object)}
                 </label>
               </td>

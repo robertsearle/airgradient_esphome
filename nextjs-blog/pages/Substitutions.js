@@ -86,14 +86,21 @@ const Substitutions = () => {
       <div>
         <h2>Substitutions Page</h2>
         <SubstitutionsComponent props={data} onDataUpdate={onDataUpdate} />
-        <Link href="/ScreensPage" className="button-prev">
-          Previous
-        </Link>
-        <Link href="/Final" className="button-primary">
-          Next
-        </Link>
+        <div className="mb-[1.5rem] m-[1rem] " />
+
+        <div className="w-full max-w-xl ">
+          <Link href="/ScreensPage" className="button-prev">
+            Previous
+          </Link>
+          <Link href="/Final" className="button-primary">
+            Next
+          </Link>
+        </div>
+
         <br />
+
         <hr className="items-center justify-center  h-1 w-1/3 m-[5rem]  bg-gray-100 border-0 rounded dark:bg-gray-700" />
+
         <form className="md:w-1/2">
           <p>
             Replace the file{" "}

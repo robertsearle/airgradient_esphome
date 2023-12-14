@@ -8,7 +8,6 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
       ? null
       : { data: { ...props.data }, defaults: { ...props.defaults } },
   );
-  data.data.DEFAULT_DISPLAY_TEMP = data.defaults.DEFAULT_DISPLAY_TEMP;
 
   const handleInputChange = (fieldName, value) => {
     let newData = Object.assign({}, data);
@@ -20,6 +19,20 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
   if (data === undefined || data == null) {
     return <div>loading screen...</div>;
   } else {
+    if (
+      data.data.DEFAULT_DISPLAY_TEMP === undefined ||
+      data.data.DEFAULT_DISPLAY_TEMP === "" ||
+      data.data.DEFAULT_DISPLAY_TEMP === null
+    ) {
+      data.data.DEFAULT_DISPLAY_TEMP = data.defaults.DEFAULT_DISPLAY_TEMP;
+    }
+    if (
+      data.data.pms5004_update_interval === undefined ||
+      data.data.pms5004_update_interval === "" ||
+      data.data.pms5004_update_interval === null
+    ) {
+      data.data.pms5004_update_interval = data.defaults.pms5004_update_interval;
+    }
     console.log("rendering", data);
     return (
       <div className="w-full max-w-xl ">
@@ -62,12 +75,13 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
             />
           </div>
           <div className="h-1 m-[1rem]  ">
-            <label>
-              Default Display Temp: {data.defaults.DEFAULT_DISPLAY_TEMP}
+            <label htmlFor="text_DEFAULT_DISPLAY_TEMP">
+              Default Display Temp:
             </label>
           </div>
           <div className="h-1 m-[1rem] ">
             <select
+              id="text_DEFAULT_DISPLAY_TEMP"
               type="text"
               placeholder={data.defaults.DEFAULT_DISPLAY_TEMP}
               value={data.data.DEFAULT_DISPLAY_TEMP}
@@ -84,15 +98,15 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
                 "ALWAYS_ON",
               ].map((x, y) => (
                 <option key={y} value={x}>
-                  {x}
+                  {x === data.defaults.DEFAULT_DISPLAY_TEMP ? x + "*" : x}
                 </option>
               ))}
             </select>
           </div>
-          <div className="mb-[1.5rem] m-[1rem] ">
+          <div className="h-1 m-[1rem] ">
             <label htmlFor="text_CO2_ABC_OFFSET"> CO2 ABC Offset: </label>
           </div>
-          <div className="mb-[1.5rem] m-[1rem] ">
+          <div className="h-1 m-[1rem] ">
             <input
               id="text_CO2_ABC_OFFSET"
               min="0"
@@ -104,6 +118,28 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
                 handleInputChange("CO2_ABC_OFFSET", e.target.value)
               }
             />
+          </div>
+          <div className="h-1 m-[1rem] ">
+            <label htmlFor="text_pms5004_update_interval">
+              PMS5004 Update Interval:{" "}
+            </label>
+          </div>
+          <div className="h-1 m-[1rem] ">
+            <select
+              id="text_pms5004_update_interval"
+              type="text"
+              placeholder={data.defaults.pms5004_update_interval}
+              value={data.data.pms5004_update_interval}
+              onChange={(e) =>
+                handleInputChange("pms5004_update_interval", e.target.value)
+              }
+            >
+              {["30s", "1min", "2min", "5min", "10min"].map((x, y) => (
+                <option key={y} value={x}>
+                  {x === data.defaults.pms5004_update_interval ? x + "*" : x}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </div>
