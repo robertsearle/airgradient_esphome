@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "lint": "jshint **/*.js **/*.tsx",
+    "format": "prettier --write \"src/**/*.{js,jsx}\" \"components/**/*.{ts,tsx,js,jsx}\" \"pages/**/*.{ts,tsx,js,jsx}\" \"context/**/*.{ts,tsx,js,jsx}\" \"utils/**/*.{ts,tsx,js,jsx}\" \"test/**/*.{ts,tsx,js,jsx}\" ",
+    "dev": "next dev",
+    "start": "next start",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "next": "latest",
+    "react": "18.2.0",
+    "react-bootstrap-validation": "^0.1.11",
+    "react-dom": "18.2.0",
+    "yaml": "^2.3.4"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.20",
+    "@types/jest": "^29.5.10",
+    "autoprefixer": "^10.4.16",
+    "esformatter": "^0.11.3",
+    "esformatter-jsx": "^8.0.1",
+    "jest": "^29.7.0",
+    "js-beautify": "^1.14.3",
+    "postcss": "^8.4.31",
+    "prettier": "^3.1.1",
+    "tailwindcss": "^3.3.5",
+    "ts-jest": "^29.1.1"
+  }
+}

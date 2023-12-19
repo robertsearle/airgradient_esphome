@@ -1,0 +1,136 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+on:
+  push:
+    branches: [ "main", "ui" ]
+  pull_request:
+    branches: [ "main", "ui" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        #node-version: [14.x, 16.x, 18.x]
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+    - uses: actions/checkout@v3
+
+
+#    - name: Setup GitHub settings
+#      run:  |
+#        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+#        git config --local user.name "github-actions[bot]"
+#        git rm -rf --ignore-unmatch nextjs-blog/dist/
+
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: 'nextjs-blog/package-lock.json'
+    - run: cd nextjs-blog && npm install
+    - run: cd nextjs-blog && cp -p ../includes/display_sh1106_128_64.yaml  public/ && cp -p ../includes/substitutions.yaml  public/ 
+    - run: cd nextjs-blog && npm run build --if-present
+#    - run: cd nextjs-blog && npm test
+
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist-without-markdown
+        retention-days: 5
+        path: |
+          **/out
+          !**/out/**/*.md
+          !**/node_modules
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        retention-days: 5
+        path: ./nextjs-blog/out
+
+
+#    - name: Update changes in GitHub repository
+#      run:  |
+#        git add -f -A nextjs-blog/dist/
+#        git commit -m '[automated commit] add configs generated using jsonnet & GitHub workflow'
+#        git push
+#
+#
+#    - name: Push changes
+#      uses: ad-m/github-push-action@master
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
+#        branch: ${{ github.ref }}
+
+#    - name: Deploy to GitHub Pages
+#      id: deployment
+#      uses: actions/deploy-pages@v2
+
+
+    - name: Cache
+      uses: actions/cache@v3.3.2
+      with:
+        # A list of files, directories, and wildcard patterns to cache and restore
+        path: |
+          ./nextjs-blog/.npm
+          ./nextjs-blog/node_modules
+          ./.npm
+          ./node_modules
+
+        # An explicit key for restoring and saving the cache
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+
+        # An ordered list of keys to use for restoring stale cache if no cache hit occurred for key. Note `cache-hit` returns false in this case.
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+
+        # The chunk size used to split up large files during upload, in bytes
+        upload-chunk-size: # optional
+
+        # An optional boolean when enabled, allows windows runners to save or restore caches that can be restored or saved respectively on other platforms
+        enableCrossOsArchive: # optional, default is false
+
+        # Fail the workflow if cache entry is not found
+        fail-on-cache-miss: # optional, default is false
+
+        # Check if a cache entry exists for the given input(s) (key, restore-keys) without downloading the cache
+        lookup-only: # optional, default is false
+
+
+  # Deployment job
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+      - name: echo URL 
+        id: deploymentURL
+        run: echo "new_page_url=${{ steps.deployment.outputs.page_url }}" >> $GITHUB_OUTPUT
+
