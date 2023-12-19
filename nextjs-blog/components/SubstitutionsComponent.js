@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import styles from './SubstitutionsComponent.module.css';
+
 
 const SubstitutionsComponent = ({ props, onDataUpdate }) => {
   console.log("SubstitutionsComponent", props);
@@ -35,7 +37,7 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
     }
     console.log("rendering", data);
     return (
-      <div className="w-full max-w-xl ">
+      <div className="w-full max-w-xl text-sky-400">
         <div className="grid auto-cols-max grid-cols-2 gap-4 ">
           <div className="h-1 m-[1rem] mt-[1.5rem] ">
             <label>Device Name: </label>
@@ -79,7 +81,7 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
               Default Display Temp:
             </label>
           </div>
-          <div className="h-1 m-[1rem] ">
+          <div className={data.data.DEFAULT_DISPLAY_TEMP === data.defaults.DEFAULT_DISPLAY_TEMP ?  "h-1 m-[1rem] default" : "h-1 m-[1rem]" }>
             <select
               id="text_DEFAULT_DISPLAY_TEMP"
               type="text"
@@ -124,7 +126,7 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
               PMS5004 Update Interval:{" "}
             </label>
           </div>
-          <div className="h-1 m-[1rem] ">
+          <div className={data.data.pms5004_update_interval === data.defaults.pms5004_update_interval ? 'h-1 m-[1rem] default2' : 'h-1 m-[1rem] '} >
             <select
               id="text_pms5004_update_interval"
               type="text"

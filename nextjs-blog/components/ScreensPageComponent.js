@@ -26,7 +26,7 @@ const ScreensPageComponent = ({ props, onDataUpdate }) => {
   };
 
   return (
-    <table className="table-auto">
+    <table className="table-auto text-sky-900">
       <thead>
         <tr>
           <th>ID</th>

@@ -12,7 +12,7 @@ export default function MyApp({
   example,
 }: AppProps & AppOwnProps) {
   return (
-    <div className="md:container md:mx-auto bg-sky-100 dark:bg-sky-700">
+    <div className="md:container md:mx-auto bg-sky-700 text-sky-50 font-serif">
       <div>
         <p>Data: {example}</p>
       </div>
