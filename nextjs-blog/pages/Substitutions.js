@@ -99,14 +99,12 @@ const Substitutions = () => {
 
         <br />
 
-        <hr className="items-center justify-center  h-1 w-1/3 m-[5rem]  bg-gray-100 border-0 rounded dark:bg-gray-700" />
+        <hr className="items-center justify-center  h-1 w-1/3 m-[5rem]  border-0 rounded bg-gray-700" />
 
         <form className="md:w-1/2">
           <p>
             Replace the file{" "}
-            <code className="text-teal-200 dark:text-teal-550">
-              includes/substitutions.yaml
-            </code>
+            <code className="text-teal-550">includes/substitutions.yaml</code>
           </p>
           <br />
           <textarea

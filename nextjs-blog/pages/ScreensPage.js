@@ -96,15 +96,21 @@ const ScreensPage = () => {
           props={{ pages }}
           onDataUpdate={handleDataUpdate}
         />
-        <Link href="/Substitutions" className="button-primary">
-          Next
-        </Link>
+        <div className="grid grid-cols-3 md:grid-cols-4 ">
+          <div />
+          <div />
+          <div className="place-content-end">
+            <Link href="/Substitutions" className="button-primary">
+              Next
+            </Link>
+          </div>
+        </div>
         <br />
-        <hr className="items-center justify-center  h-1 w-1/3 m-[5rem]  bg-gray-100 border-0 rounded dark:bg-gray-700" />
-        <form className="md:w-1/2">
+        <hr className="items-center justify-center  h-1 w-2/3 m-[5rem]  border-0 rounded bg-gray-700" />
+        <form className="w-1/2">
           <p>
             Replace the file{" "}
-            <code className="text-teal-200 dark:text-teal-550">
+            <code className="text-teal-550">
               includes/display_sh1106_128_64.yaml
             </code>
           </p>

@@ -117,8 +117,9 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
           <div className="h-1 m-[1rem] ">
             <label htmlFor="text_CO2_ABC_OFFSET"> CO2 ABC Offset: </label>
           </div>
-          <div className="h-1 m-[1rem] ">
+          <div className="h-1 m-[1rem] w-[5rem]">
             <input
+              className="w-[3.5rem]"
               id="text_CO2_ABC_OFFSET"
               min="-99"
               max="499"
