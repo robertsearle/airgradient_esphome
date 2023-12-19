@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import styles from './SubstitutionsComponent.module.css';
-
 
 const SubstitutionsComponent = ({ props, onDataUpdate }) => {
   console.log("SubstitutionsComponent", props);
@@ -39,7 +37,7 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
     return (
       <div className="w-full max-w-xl text-sky-400">
         <div className="grid auto-cols-max grid-cols-2 gap-4 ">
-          <div className="h-1 m-[1rem] mt-[1.5rem] ">
+          <div className="h-1 m-[1rem] mt-[1.5rem] default-text ">
             <label>Device Name: </label>
           </div>
           <div className="h-1 m-[1rem] mt-[1.5rem] ">
@@ -50,6 +48,7 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
               onChange={(e) => handleInputChange("devicename", e.target.value)}
             />
           </div>
+
           <div className="h-1 m-[1rem]  ">
             <label>Upper Device Name: </label>
           </div>
@@ -63,6 +62,7 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
               }
             />
           </div>
+
           <div className="h-1 m-[1rem]  ">
             <label> EspHome Config Version: </label>
           </div>
@@ -76,12 +76,20 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
               }
             />
           </div>
+
           <div className="h-1 m-[1rem]  ">
             <label htmlFor="text_DEFAULT_DISPLAY_TEMP">
               Default Display Temp:
             </label>
           </div>
-          <div className={data.data.DEFAULT_DISPLAY_TEMP === data.defaults.DEFAULT_DISPLAY_TEMP ?  "h-1 m-[1rem] default" : "h-1 m-[1rem]" }>
+          <div
+            className={
+              data.data.DEFAULT_DISPLAY_TEMP ===
+              data.defaults.DEFAULT_DISPLAY_TEMP
+                ? "h-1 m-[1rem] text-default "
+                : "h-1 m-[1rem]"
+            }
+          >
             <select
               id="text_DEFAULT_DISPLAY_TEMP"
               type="text"
@@ -105,14 +113,15 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
               ))}
             </select>
           </div>
+
           <div className="h-1 m-[1rem] ">
             <label htmlFor="text_CO2_ABC_OFFSET"> CO2 ABC Offset: </label>
           </div>
           <div className="h-1 m-[1rem] ">
             <input
               id="text_CO2_ABC_OFFSET"
-              min="0"
-              max="999"
+              min="-99"
+              max="499"
               type="number"
               placeholder={data.defaults.CO2_ABC_OFFSET}
               value={data.data.CO2_ABC_OFFSET}
@@ -121,12 +130,20 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
               }
             />
           </div>
+
           <div className="h-1 m-[1rem] ">
             <label htmlFor="text_pms5004_update_interval">
               PMS5004 Update Interval:{" "}
             </label>
           </div>
-          <div className={data.data.pms5004_update_interval === data.defaults.pms5004_update_interval ? 'h-1 m-[1rem] default2' : 'h-1 m-[1rem] '} >
+          <div
+            className={
+              data.data.pms5004_update_interval ===
+              data.defaults.pms5004_update_interval
+                ? "h-1 m-[1rem] text-default "
+                : "h-1 m-[1rem] "
+            }
+          >
             <select
               id="text_pms5004_update_interval"
               type="text"
