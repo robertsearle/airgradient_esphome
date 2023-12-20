@@ -92,7 +92,6 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
           >
             <select
               id="text_DEFAULT_DISPLAY_TEMP"
-              type="text"
               placeholder={data.defaults.DEFAULT_DISPLAY_TEMP}
               value={data.data.DEFAULT_DISPLAY_TEMP}
               onChange={(e) =>
@@ -147,7 +146,6 @@ const SubstitutionsComponent = ({ props, onDataUpdate }) => {
           >
             <select
               id="text_pms5004_update_interval"
-              type="text"
               placeholder={data.defaults.pms5004_update_interval}
               value={data.data.pms5004_update_interval}
               onChange={(e) =>

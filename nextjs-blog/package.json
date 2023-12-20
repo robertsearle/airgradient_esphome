@@ -3,7 +3,7 @@
   "scripts": {
     "build": "next build",
     "lint": "jshint **/*.js **/*.tsx",
-    "format": "prettier --write \"src/**/*.{js,jsx}\" \"components/**/*.{ts,tsx,js,jsx}\" \"pages/**/*.{ts,tsx,js,jsx}\" \"context/**/*.{ts,tsx,js,jsx}\" \"utils/**/*.{ts,tsx,js,jsx}\" \"test/**/*.{ts,tsx,js,jsx}\" ",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" \"components/**/*.{ts,tsx,js,jsx}\" \"pages/**/*.{ts,tsx,js,jsx}\" \"context/**/*.{ts,tsx,js,jsx}\" \"utils/**/*.{ts,tsx,js,jsx}\" \"test/**/*.{ts,tsx,js,jsx}\" ",
     "dev": "next dev",
     "start": "next start",
     "test": "jest"

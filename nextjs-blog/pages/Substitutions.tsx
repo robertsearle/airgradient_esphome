@@ -18,8 +18,6 @@ const Substitutions = () => {
           setIsLoading(false);
         }
       });
-    } else {
-      return { data };
     }
   }, []);
 
@@ -109,9 +107,8 @@ const Substitutions = () => {
           <br />
           <textarea
             readOnly
-            as="textarea"
             className="textarea"
-            rows="10"
+            rows={10}
             value={generateYamlFile()}
           />
         </form>

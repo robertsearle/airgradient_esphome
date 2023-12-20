@@ -1,4 +1,10 @@
 class SubstitutionsData {
+  devicename: string;
+  upperDevicename: string;
+  esphomeConfigVersion: string;
+  defaultDisplayTemp: string;
+  co2AbcOffset: string;
+
   constructor(
     devicename = "",
     upperDevicename = "",
@@ -6,11 +12,6 @@ class SubstitutionsData {
     defaultDisplayTemp = "",
     co2AbcOffset = "",
   ) {
-    devicename;
-    upperDevicename;
-    esphomeConfigVersion;
-    defaultDisplayTemp;
-    co2AbcOffset;
     this.devicename = devicename;
     this.upperDevicename = upperDevicename;
     this.esphomeConfigVersion = esphomeConfigVersion;

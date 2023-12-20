@@ -31,8 +31,6 @@ const ScreensPage = () => {
           setPages(rawPages);
         }
       });
-    } else {
-      return { pages };
     }
   }, []);
 
@@ -117,9 +115,8 @@ const ScreensPage = () => {
           <br />
           <textarea
             readOnly
-            as="textarea"
             className="textarea"
-            rows="10"
+            rows={10}
             value={generateYamlFile()}
           />
         </form>
