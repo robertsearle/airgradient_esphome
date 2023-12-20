@@ -72,7 +72,7 @@ const ScreensPage = () => {
       for (var i = newPages.length - 1; i >= 0; i--) {
         for (var j = favs.length - 1; j >= 0; j--) {
           let newPage = Object.assign({}, favs[j].object);
-          newPage.id = newPage.id + "_" + i;
+          newPage.id = newPage.id + "___" + i;
           newPages.splice(i, 0, newPage);
         }
       }
