@@ -2,11 +2,13 @@
 import { createContext, useEffect, useContext, useState } from "react";
 import Link from "next/link";
 import SubstitutionsComponent from "../components/SubstitutionsComponent";
+import SubstitutionsAdvance from "../components/SubstitutionsAdvance";
 import * as MainObjectType from "../src/MainObjectType";
 
 const Substitutions = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [showAdvance, setShowAdvance] = useState(false);
 
   useEffect(() => {
     if (isLoading) {
@@ -83,7 +85,25 @@ const Substitutions = () => {
     return (
       <div>
         <h2>Substitutions Page</h2>
-        <SubstitutionsComponent props={data} onDataUpdate={onDataUpdate} />
+        <div className="w-full max-w-xl text-sky-400">
+          <div className="grid auto-cols-max grid-cols-2 gap-4 ">
+            <SubstitutionsComponent props={data} onDataUpdate={onDataUpdate} />
+            <div>
+              <i
+                className=" bg-sky-800 hover:bg-blue-700 "
+                onClick={(e) => setShowAdvance(!showAdvance)}
+              >
+                Show Advance &gt;&gt;&gt;
+              </i>
+            </div>
+            <div />
+            <SubstitutionsAdvance
+              props={data}
+              onDataUpdate={onDataUpdate}
+              className={" " + (showAdvance ? " " : " hidden")}
+            />
+          </div>
+        </div>
         <div className="mb-[1.5rem] m-[1rem] " />
 
         <div className="w-full max-w-xl ">
